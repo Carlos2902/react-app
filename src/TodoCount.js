@@ -1,8 +1,17 @@
+// const estilos = {
+//   backgroundColor: 'red'
+// }
+function TodoCount({total, completed}){
+ 
+  return(
+     <h1 style={{
+      fontSize: '24px',
+      textAlign: 'center',
+      margin: 0,
+      padding: '48px',
 
-function TodoCount(){
-    return(
-     <h1>
-      You've acomplished 3 of 5 ToDOs
+     }}>
+      You've acomplished {completed} of {total} ToDOs
      </h1>
     );
   }

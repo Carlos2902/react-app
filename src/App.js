@@ -1,4 +1,5 @@
-import logo from './platzi.webp';
+// eslint-disable-next-line  
+import React from 'react';
 import { TodoCount } from './TodoCount';
 import { TodoSearch } from './TodoSearch';
 import {TodoList} from './TodoList';
@@ -6,26 +7,39 @@ import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 import './App.css';
 
+
+
+const defaultTodos = [
+  {text: 'Cortar cebolla', completed: true},
+  {text: 'Terminar curso react.js', completed: false},
+  {text: 'Llorar con la llorona', completed: true},
+  {text: 'Example', completed: false},
+  
+];
+
 // component
 function App() {
   return (
-    <div className="App">
-
+    <React.Fragment>
     {/* First message */}
-      <TodoCount/>
+      <TodoCount completed={17} total={25}/>
     {/* Search field */}
      <TodoSearch/>
 
     <TodoList>
-      <TodoItem/>
-      <TodoItem/>
-      <TodoItem/>
+      {defaultTodos.map(todo => (
+        <TodoItem
+        key={todo.text} 
+        text={todo.text}
+        completed = {todo.completed} />
+      ))}
+      
     </TodoList>
 
     {/* Button to create ToDo's */}
     <CreateTodoButton/>
 
-    </div>
+    </React.Fragment>
   );
 }
 
