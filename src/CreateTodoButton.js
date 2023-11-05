@@ -1,9 +1,11 @@
+import './styles/CreateButton.css'
+
 function CreateTodoButton(){
     return(
-      <button>
-        <p>
+      <button className='CreateTodoButton'>
+    
           +
-        </p>
+       
       </button>
     );
   }

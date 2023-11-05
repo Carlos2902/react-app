@@ -1,17 +1,14 @@
 // const estilos = {
 //   backgroundColor: 'red'
 // }
+
+import './styles/TodoCount.css';
+
 function TodoCount({total, completed}){
  
   return(
-     <h1 style={{
-      fontSize: '24px',
-      textAlign: 'center',
-      margin: 0,
-      padding: '48px',
-
-     }}>
-      You've acomplished {completed} of {total} ToDOs
+     <h1 className='TodoCount'>
+      You've acomplished <span>{completed}</span> of <span>{total}</span>  TO DO's
      </h1>
     );
   }
