@@ -14,12 +14,14 @@ const defaultTodos = [
   { text: "exams", completed: true },
 ];
 
+
+
 // component
 function App() {
   // New Todo's status
   const [todos, setTodos] = React.useState(defaultTodos);
 
-  // Search Todo's state
+  // Search Todo's state (communication beetwen father ->appjs to TodoSearch)
   const [searchValue, setSearchValue] = React.useState('');
 
   // Completed Todo's & Total todo's
@@ -28,6 +30,18 @@ function App() {
     !!todo.completed).length;
 
   const totalTodos = todos.length;
+
+  // Creation of a new state
+  const searchedTodos = todos.filter(
+     (todo) => {
+            //includes (method)
+            const todoText = todo.text.toLowerCase();
+            const searchText = searchValue.toLowerCase();
+            return todoText.includes(searchText);
+     }
+  );
+
+  
 
   return (
     <React.Fragment>
@@ -40,7 +54,8 @@ function App() {
       />
 
       <TodoList>
-        {defaultTodos.map((todo) => (
+        {/* render  ALL THE todo's from the derived state 'SEARCHED TODO'S' */}
+        {searchedTodos.map((todo) => (
           <TodoItem
             key={todo.text}
             text={todo.text}

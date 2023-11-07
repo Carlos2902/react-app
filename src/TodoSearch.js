@@ -1,6 +1,7 @@
 import React from 'react';
 import "./styles/TodoSearch.css";
 
+// Communication, receiving through props search and setSearch status:
 function TodoSearch({searchValue,
   setSearchValue,
 }) {
@@ -12,6 +13,7 @@ function TodoSearch({searchValue,
       value={searchValue}
       onChange={(event) => {
         console.log('Escribiste algo en el input')
+        console.log('Los usuarios buscan: ' + searchValue);
         setSearchValue(event.target.value);
       }}
     />
