@@ -11,16 +11,33 @@ const defaultTodos = [
   { text: "Terminar curso react.js", completed: false },
   { text: "Llorar con la llorona", completed: true },
   { text: "Example", completed: false },
+  { text: "exams", completed: true },
 ];
 
 // component
 function App() {
+  // New Todo's status
+  const [todos, setTodos] = React.useState(defaultTodos);
+
+  // Search Todo's state
+  const [searchValue, setSearchValue] = React.useState('');
+
+  // Completed Todo's & Total todo's
+  const completedTodos = todos.filter(
+    todo => 
+    !!todo.completed).length;
+
+  const totalTodos = todos.length;
+
   return (
     <React.Fragment>
       {/* First message */}
-      <TodoCount completed={17} total={25} />
+      <TodoCount completed={completedTodos} total={totalTodos} />
       {/* Search field */}
-      <TodoSearch />
+      <TodoSearch
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
 
       <TodoList>
         {defaultTodos.map((todo) => (
