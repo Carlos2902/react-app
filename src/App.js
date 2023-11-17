@@ -12,6 +12,7 @@ const defaultTodos = [
   { text: "Llorar con la llorona", completed: true },
   { text: "Example", completed: false },
   { text: "exams", completed: true },
+  {text: "Go gym", completed: false},
 ];
 
 
@@ -38,10 +39,39 @@ function App() {
             const todoText = todo.text.toLowerCase();
             const searchText = searchValue.toLowerCase();
             return todoText.includes(searchText);
+            
      }
   );
 
-  
+  //        function: awaits to receive a parameter with the text 
+  //        in order to know which todo we're checking as completed
+  const completeTodo = (text)=>{
+    // new generated array list with Todo's updated (property completed:true)
+    const newTodos = [...todos];
+    // WHICH of all of text array is the one that we want to modify (in order to chek it as completed)
+    // in the case above, whe need a unique identifier (key)
+    const todoIndex=newTodos.findIndex(
+      // logic behhind the default method findIndex:
+      // if the text we're receiving is the same as the text we want to complete it...will return 
+      // an updated array [todoIndex] its index.
+      (todo)=>todo.text == text
+    );
+    // logic: for the new array list, on the index, apply property 'completed=true'
+    newTodos[todoIndex].completed = true;
+    // update the state 'setTodos'
+    setTodos(newTodos);
+  };
+
+
+  const deleteTodo = (text)=>{
+    const newTodos = [...todos];
+    const todoIndex = newTodos.findIndex(
+      (todo)=>todo.text == text
+    );
+
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos);
+  }
 
   return (
     <React.Fragment>
@@ -62,6 +92,13 @@ function App() {
             completed={todo.completed}
             todos={todos}
             setTodos={setTodos}
+            // EVENTS in react does not await for the executed function
+            // they need a function where react can put () only when 
+            // the event of the interaction occurs. (in this case
+            // when the user clicks on the 'check' icon to complete a task)
+              // That's why we wrap the 'completedTodo' in other function (arrowFunction)
+            onComplete={()=>completeTodo(todo.text)}
+            onDelete={()=>deleteTodo(todo.text)}
           />
         ))}
       </TodoList>
