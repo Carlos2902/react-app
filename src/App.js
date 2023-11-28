@@ -43,8 +43,8 @@ function App() {
      }
   );
 
-  //        function: awaits to receive a parameter with the text 
-  //        in order to know which todo we're checking as completed
+  // function: awaits to receive a parameter with the text 
+  // in order to know which todo we're checking as completed
   const completeTodo = (text)=>{
     // new generated array list with Todo's updated (property completed:true)
     const newTodos = [...todos];
@@ -68,10 +68,10 @@ function App() {
     const todoIndex = newTodos.findIndex(
       (todo)=>todo.text == text
     );
-
+        // arrayManipulation method -> .splice
     newTodos.splice(todoIndex, 1);
     setTodos(newTodos);
-  }
+  };
 
   return (
     <React.Fragment>
