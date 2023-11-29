@@ -13,7 +13,7 @@
     position: absolute;
     left: 12px;
 }
-.Icon-container-check{
+.Icon-container-check--active{
     color: #4caf50;
 }
 
@@ -23,17 +23,13 @@
     right: 0;
 }
 
-.Icon-container-delete:hover{
-    color: red;
-}
-
 .Icon-svg{
     width: 24px;
     height: 24px;
 }
 
 /* Si el contenedor que almacena a la imagen delete, entraremos a su hijo 'Icon-svg' */
-.Icon-container-delete:hover .Icon-svg{
+.Icon-container-check:hover .Icon-svg{
     fill:green;
 }
 
