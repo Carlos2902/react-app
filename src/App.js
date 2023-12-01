@@ -6,21 +6,34 @@ import { TodoList } from "./TodoList";
 import { TodoItem } from "./TodoItem";
 import { CreateTodoButton } from "./CreateTodoButton";
 
-const defaultTodos = [
-  { text: "Cortar cebolla", completed: true },
-  { text: "Terminar curso react.js", completed: false },
-  { text: "Llorar con la llorona", completed: true },
-  { text: "Example", completed: false },
-  { text: "exams", completed: true },
-  {text: "Go gym", completed: false},
-];
+// const defaultTodos = [
+//   { text: "Cortar cebolla", completed: true },
+//   { text: "Terminar curso react.js", completed: false },
+//   { text: "Llorar con la llorona", completed: true },
+//   { text: "Example", completed: false },
+//   { text: "exams", completed: true },
+//   {text: "Go gym", completed: false},
+// ];
 
+// localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
 
 
 // component
 function App() {
+  const localStorageTodos = localStorage.getItem('TODOS_V1');
+  let parsedTodos;
+  // If there's none value on local storage...
+  if (!localStorageTodos){
+    // If it's the first time a user enters into the app, lets drop an empty array
+    localStorage.setItem('TODOS_V1',JSON.stringify([]));
+    parsedTodos = [];
+  }else{
+    parsedTodos=JSON.parse(localStorageTodos);
+  }
+
+
   // New Todo's status
-  const [todos, setTodos] = React.useState(defaultTodos);
+  const [todos, setTodos] = React.useState(parsedTodos);
 
   // Search Todo's state (communication beetwen father ->appjs to TodoSearch)
   const [searchValue, setSearchValue] = React.useState('');
@@ -43,6 +56,13 @@ function App() {
      }
   );
 
+  // function -> update the state & local storage at the same time
+  const  saveTodos = (newTodos)=>{
+   localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
+    setTodos(newTodos);
+  } 
+
+
   // function: awaits to receive a parameter with the text 
   // in order to know which todo we're checking as completed
   const completeTodo = (text)=>{
@@ -59,7 +79,7 @@ function App() {
     // logic: for the new array list, on the index, apply property 'completed=true'
     newTodos[todoIndex].completed = true;
     // update the state 'setTodos'
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
 
@@ -70,7 +90,7 @@ function App() {
     );
         // arrayManipulation method -> .splice
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   return (
