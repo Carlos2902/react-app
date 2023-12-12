@@ -2,7 +2,7 @@
 //   backgroundColor: 'red'
 // }
 
-import './styles/TodoCount.css';
+import './TodoCount.css';
 
 
 function TodoCount({total, completed}){

@@ -1,10 +1,7 @@
 // eslint-disable-next-line
 import React from "react";
-import { TodoCount } from "./TodoCount";
-import { TodoSearch } from "./TodoSearch";
-import { TodoList } from "./TodoList";
-import { TodoItem } from "./TodoItem";
-import { CreateTodoButton } from "./CreateTodoButton";
+import { AppUI } from "./AppUI";
+import { useLocalStorage } from "./useLocalStorage";
 
 // const defaultTodos = [
 //   { text: "Cortar cebolla", completed: true },
@@ -18,22 +15,13 @@ import { CreateTodoButton } from "./CreateTodoButton";
 // localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
 
 
+
 // component
 function App() {
-  const localStorageTodos = localStorage.getItem('TODOS_V1');
-  let parsedTodos;
-  // If there's none value on local storage...
-  if (!localStorageTodos){
-    // If it's the first time a user enters into the app, lets drop an empty array
-    localStorage.setItem('TODOS_V1',JSON.stringify([]));
-    parsedTodos = [];
-  }else{
-    parsedTodos=JSON.parse(localStorageTodos);
-  }
 
-
-  // New Todo's status
-  const [todos, setTodos] = React.useState(parsedTodos);
+  // New Todo's status: return const from useLocalStorage:
+                        // parameters: name, empty array -> for todo's
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
 
   // Search Todo's state (communication beetwen father ->appjs to TodoSearch)
   const [searchValue, setSearchValue] = React.useState('');
@@ -44,6 +32,22 @@ function App() {
     !!todo.completed).length;
 
   const totalTodos = todos.length;
+    console.log('Log 1');
+    console.log('Log 3');
+
+    // React.useEffect(()=>{
+    //   console.log('Log 2');
+    // });
+
+//     React.useEffect(()=>{
+//       console.log('Log 2');
+
+// }, []);
+React.useEffect(()=>{
+  console.log('Log 2');
+
+}, [totalTodos]);
+
 
   // Creation of a new state
   const searchedTodos = todos.filter(
@@ -54,13 +58,9 @@ function App() {
             return todoText.includes(searchText);
             
      }
-  );
+    );
 
-  // function -> update the state & local storage at the same time
-  const  saveTodos = (newTodos)=>{
-   localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
-    setTodos(newTodos);
-  } 
+ 
 
 
   // function: awaits to receive a parameter with the text 
@@ -74,7 +74,7 @@ function App() {
       // logic behhind the default method findIndex:
       // if the text we're receiving is the same as the text we want to complete it...will return 
       // an updated array [todoIndex] its index.
-      (todo)=>todo.text == text
+      (todo)=>todo.text === text
     );
     // logic: for the new array list, on the index, apply property 'completed=true'
     newTodos[todoIndex].completed = true;
@@ -86,47 +86,30 @@ function App() {
   const deleteTodo = (text)=>{
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      (todo)=>todo.text == text
+      (todo)=>todo.text === text
     );
         // arrayManipulation method -> .splice
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   };
 
-  return (
-    <React.Fragment>
-      {/* First message */}
-      <TodoCount completed={completedTodos} total={totalTodos} />
-      {/* Search field */}
-      <TodoSearch
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
+ 
 
-      <TodoList>
-        {/* render  ALL THE todo's from the derived state 'SEARCHED TODO'S' */}
-        {searchedTodos.map((todo) => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            todos={todos}
-            setTodos={setTodos}
-            // EVENTS in react does not await for the executed function
-            // they need a function where react can put () only when 
-            // the event of the interaction occurs. (in this case
-            // when the user clicks on the 'check' icon to complete a task)
-              // That's why we wrap the 'completedTodo' in other function (arrowFunction)
-            onComplete={()=>completeTodo(todo.text)}
-            onDelete={()=>deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
-
-      {/* Button to create ToDo's */}
-      <CreateTodoButton />
-    </React.Fragment>
-  );
+  return(
+    // componenr AppUI + props
+    <AppUI
+    
+      completedTodos={completedTodos}
+      totalTodos={totalTodos}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      searchedTodos={searchedTodos}
+      completeTodo= {completeTodo}
+      deleteTodo={deleteTodo}
+  
+  
+    />
+  )
 }
 
 export default App;
