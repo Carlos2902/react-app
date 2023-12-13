@@ -3,6 +3,7 @@ import React from "react";
 import { AppUI } from "./AppUI";
 import { useLocalStorage } from "./useLocalStorage";
 
+// localStorage.removeItem('TODOS_V1');
 // const defaultTodos = [
 //   { text: "Cortar cebolla", completed: true },
 //   { text: "Terminar curso react.js", completed: false },
@@ -16,12 +17,18 @@ import { useLocalStorage } from "./useLocalStorage";
 
 
 
+
 // component
 function App() {
 
   // New Todo's status: return const from useLocalStorage:
                         // parameters: name, empty array -> for todo's
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  const {
+    item: todos, 
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage('TODOS_V1', []);
 
   // Search Todo's state (communication beetwen father ->appjs to TodoSearch)
   const [searchValue, setSearchValue] = React.useState('');
@@ -32,9 +39,7 @@ function App() {
     !!todo.completed).length;
 
   const totalTodos = todos.length;
-    console.log('Log 1');
-    console.log('Log 3');
-
+   
     // React.useEffect(()=>{
     //   console.log('Log 2');
     // });
@@ -43,11 +48,6 @@ function App() {
 //       console.log('Log 2');
 
 // }, []);
-React.useEffect(()=>{
-  console.log('Log 2');
-
-}, [totalTodos]);
-
 
   // Creation of a new state
   const searchedTodos = todos.filter(
@@ -98,7 +98,8 @@ React.useEffect(()=>{
   return(
     // componenr AppUI + props
     <AppUI
-    
+      loading={loading}
+      error={error}
       completedTodos={completedTodos}
       totalTodos={totalTodos}
       searchValue={searchValue}
