@@ -98,15 +98,15 @@ function App() {
   return(
     // componenr AppUI + props
     <AppUI
-      loading={loading}
-      error={error}
-      completedTodos={completedTodos}
-      totalTodos={totalTodos}
-      searchValue={searchValue}
-      setSearchValue={setSearchValue}
-      searchedTodos={searchedTodos}
-      completeTodo= {completeTodo}
-      deleteTodo={deleteTodo}
+      // loading={loading}
+      // error={error}
+      // completedTodos={completedTodos}
+      // totalTodos={totalTodos}
+      // searchValue={searchValue}
+      // setSearchValue={setSearchValue}
+      // searchedTodos={searchedTodos}
+      // completeTodo= {completeTodo}
+      // deleteTodo={deleteTodo}
   
   
     />

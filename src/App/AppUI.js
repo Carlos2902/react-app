@@ -25,12 +25,9 @@ function AppUI ({
     return (
         <React.Fragment>
           {/* First message */}
-          <TodoCount completed={completedTodos} total={totalTodos} />
+          <TodoCount />
           {/* Search field */}
-          <TodoSearch
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-          />
+          <TodoSearch/>
     
           <TodoList>
             {loading && 
