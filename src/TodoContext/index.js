@@ -1,8 +1,8 @@
 import React from "react";
-
+import {useLocalStorage} from './useLocalStorage'
 const TodoContext =  React.createContext();
     
-function TodoProvider(){
+function TodoProvider({children}){
           // New Todo's status: return const from useLocalStorage:
             // parameters: name, empty array -> for todo's
             const {
@@ -57,14 +57,29 @@ function TodoProvider(){
             };
 
 
+            // all the data above should be storage into the property 'value'
+            // this will allow to expose all the data globally in the app's context
         return(
-            <TodoContext.Provider>
-                
+            // in this case, we will expose an object globally
+            <TodoContext.Provider value={{
+
+                loading,
+                error,
+                completedTodos,
+                totalTodos,
+                searchValue,
+                setSearchValue,
+                searchedTodos,
+                completeTodo,
+                deleteTodo,
+
+            }}>
+                {/* Now, any component that resides inside TodoContext, will have access to the data above */}
+                {children}
             </TodoContext.Provider>
         );
 
     }
 
-    <TodoContext.Consumer></TodoContext.Consumer>
 
 export {TodoContext, TodoProvider};

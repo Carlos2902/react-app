@@ -11,15 +11,15 @@ import { CreateTodoButton } from "../CreateTodoButton";
 // props:
 function AppUI ({
 
-    loading,
-    error,
-    completedTodos,
-    totalTodos,
-    searchValue,
-    setSearchValue,
-    searchedTodos,
-    completeTodo,
-    deleteTodo,
+    // loading,
+    // error,
+    // completedTodos,
+    // totalTodos,
+    // searchValue,
+    // setSearchValue,
+    // searchedTodos,
+    // completeTodo,
+    // deleteTodo,
 
 }) {
     return (
