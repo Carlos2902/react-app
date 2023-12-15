@@ -1,10 +1,15 @@
 import React from 'react';
 import "./TodoSearch.css";
+import { TodoContext } from '../TodoContext';
+
 
 // Communication, receiving through props search and setSearch status:
-function TodoSearch({searchValue,
-  setSearchValue,
-}) {
+function TodoSearch() {
+  const {
+    searchValue,
+    setSearchValue,
+  }=React.useContext(TodoContext)
+ 
 
   return (
     <input
