@@ -7,29 +7,30 @@ import {TodosLoading} from "../TodosLoading";
 import {TodosError} from "../TodosError";
 import {EmptyTodos} from "../EmptyTodos"
 import { CreateTodoButton } from "../CreateTodoButton";
+import { TodoContext } from "../TodoContext";
+
 
 // props:
-function AppUI ({
-
-    // loading,
-    // error,
-    // completedTodos,
-    // totalTodos,
-    // searchValue,
-    // setSearchValue,
-    // searchedTodos,
-    // completeTodo,
-    // deleteTodo,
-
-}) {
+function AppUI () {
     return (
         <React.Fragment>
           {/* First message */}
-          <TodoCount />
+          <TodoCount>
+            
+          </TodoCount>
           {/* Search field */}
           <TodoSearch/>
-    
-          <TodoList>
+
+          {/* TodoList will have now access to TodoContext props in order to execute its data */}
+          <TodoContext.Consumer>
+           {({
+            loading,
+            error,
+            searchedTodos,
+            completeTodo,
+            deleteTodo,
+           })=>(
+            <TodoList>
             {loading && 
             <>
             <TodosLoading/>
@@ -38,7 +39,7 @@ function AppUI ({
             </>}
             {error && <TodosError/>}
             {(!loading && searchedTodos.length === 0) &&<EmptyTodos/>}
-
+              
 
 
             {/* render  ALL THE todo's from the derived state 'SEARCHED TODO'S' */}
@@ -59,6 +60,8 @@ function AppUI ({
               />
             ))}
           </TodoList>
+           )}
+          </TodoContext.Consumer>
     
           {/* Button to create ToDo's */}
           <CreateTodoButton />
