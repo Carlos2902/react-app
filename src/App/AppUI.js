@@ -7,8 +7,8 @@ import {TodosLoading} from "../TodosLoading";
 import {TodosError} from "../TodosError";
 import {EmptyTodos} from "../EmptyTodos"
 import { CreateTodoButton } from "../CreateTodoButton";
+import {Modal} from "../Modal";
 import { TodoContext } from "../TodoContext";
-
 
 // props:
 function AppUI () {
@@ -19,11 +19,13 @@ function AppUI () {
     searchedTodos,
     completeTodo,
     deleteTodo,
+    openModal,
+    setOpenModal,
    }
 = React.useContext(TodoContext);
     return (
      
-        <React.Fragment>
+        <>
           {/* First message */}
           <TodoCount>
             
@@ -67,7 +69,14 @@ function AppUI () {
     
           {/* Button to create ToDo's */}
           <CreateTodoButton />
-        </React.Fragment>
+
+          {/* Create an state named openModal, if its open... then... */}
+            {openModal && (
+                <Modal>
+                Functionality of adding TODO'S
+                </Modal>
+            )}
+        </>
       );
 }
 

@@ -13,6 +13,10 @@ function TodoProvider({children}){
             } = useLocalStorage('TODOS_V1', []);
             // Search Todo's state (communication beetwen father ->appjs to TodoSearch)
             const [searchValue, setSearchValue] = React.useState('');
+
+            const [openModal, setOpenModal] = React.useState(true);
+
+
             // Completed Todo's & Total todo's
             const completedTodos = todos.filter(
                 todo => 
@@ -72,7 +76,7 @@ function TodoProvider({children}){
                 searchedTodos,
                 completeTodo,
                 deleteTodo,
-
+                openModal,
             }}>
                 {/* Now, any component that resides inside TodoContext, will have access to the data above */}
                 {children}
