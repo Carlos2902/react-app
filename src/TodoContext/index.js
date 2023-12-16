@@ -14,7 +14,7 @@ function TodoProvider({children}){
             // Search Todo's state (communication beetwen father ->appjs to TodoSearch)
             const [searchValue, setSearchValue] = React.useState('');
 
-            const [openModal, setOpenModal] = React.useState(true);
+            const [openModal, setOpenModal] = React.useState(false);
 
 
             // Completed Todo's & Total todo's
@@ -77,6 +77,7 @@ function TodoProvider({children}){
                 completeTodo,
                 deleteTodo,
                 openModal,
+                setOpenModal,
             }}>
                 {/* Now, any component that resides inside TodoContext, will have access to the data above */}
                 {children}

@@ -1,14 +1,15 @@
+import React from "react";
+import { TodoContext } from "../TodoContext";
 import "./CreateButton.css";
 
-function CreateTodoButton() {
+function CreateTodoButton({setOpenModal}) {
   return (
     <button
       className="CreateTodoButton"
       onClick={
-        (event) => {
-        console.log("le diste click")
-        console.log(event)
-        console.log(event.target)
+        ()=>{
+          setOpenModal(state => !state)
+          // Arrow fction: receives state & returns the negation of that state
         }
       }
     >
@@ -16,5 +17,8 @@ function CreateTodoButton() {
     </button>
   );
 }
+
+
+
 
 export { CreateTodoButton };

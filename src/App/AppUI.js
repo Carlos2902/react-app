@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TodoCount } from "../TodoCount";
 import { TodoSearch } from "../TodoSearch";
 import { TodoList } from "../TodoList";
@@ -23,6 +23,10 @@ function AppUI () {
     setOpenModal,
    }
 = React.useContext(TodoContext);
+
+   
+
+
     return (
      
         <>
@@ -68,15 +72,15 @@ function AppUI () {
           
     
           {/* Button to create ToDo's */}
-          <CreateTodoButton />
-
-          {/* Create an state named openModal, if its open... then... */}
-            {openModal && (
-                <Modal>
-                Functionality of adding TODO'S
-                </Modal>
-            )}
-        </>
+          <CreateTodoButton
+            setOpenModal={setOpenModal}
+          />
+          {openModal && (
+            <Modal>
+              Add new Todo
+            </Modal>
+          )}
+       </>
       );
 }
 
