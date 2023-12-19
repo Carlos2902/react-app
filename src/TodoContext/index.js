@@ -32,6 +32,18 @@ function TodoProvider({children}){
                         
                 }
                 );
+
+                    // Receiving the text from newTodoValue in parameter
+            const addTodo = (text) => {
+                                const newTodos = [...todos];
+                                newTodos.push({
+                                    text,
+                                    completed: false,
+                                });
+                                saveTodos(newTodos);
+                
+            };
+            
             // function: awaits to receive a parameter with the text 
             // in order to know which todo we're checking as completed
             const completeTodo = (text)=>{
@@ -66,7 +78,7 @@ function TodoProvider({children}){
         return(
             // in this case, we will expose an object globally
             <TodoContext.Provider value={{
-
+                addTodo,
                 loading,
                 error,
                 completedTodos,

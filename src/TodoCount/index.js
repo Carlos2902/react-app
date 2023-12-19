@@ -15,7 +15,7 @@ function TodoCount(){
   return(
     completedTodos === totalTodos?
     <h1 className='allFinished'>
-      Congratulations, you've acomplished everything. STAY HARD!!💪🏽
+       Nothing to do, you can <span>relax now.</span> 
     </h1>:
      <h1 className='TodoCount'>
       You've acomplished <span>{completedTodos}</span> of <span>{totalTodos}</span>  TO DO's
