@@ -3,21 +3,23 @@ import "./TodoForm.css";
 
 function TodoForm(){
     return(
-        <form>
+        <form onSubmit={(event)=> {
+            event.preventDefault();
+        }}>
             <label>Write your new Todo</label>
             <textarea
                 placeholder="Buy groceries"
             />
 
-            <div className="TodoForm-button--container">
-            <button
-            className="TodoForm-button--cancel"
+            <div className="TodoForm-buttonContainer">
+            <button type="" 
+            className="TodoForm-button TodoForm-button--cancel"
             >
                 Cancel
             </button>
 
-            <button
-            className="TodoForm-button--add"
+            <button type="submit"
+            className="TodoForm-button TodoForm-button--add"
             >
                 Add
             </button>
