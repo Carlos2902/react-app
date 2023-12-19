@@ -8,6 +8,7 @@ import {TodosError} from "../TodosError";
 import {EmptyTodos} from "../EmptyTodos"
 import { CreateTodoButton } from "../CreateTodoButton";
 import {Modal} from "../Modal";
+import {TodoForm} from "../TodoForm";
 import { TodoContext } from "../TodoContext";
 
 // props:
@@ -77,7 +78,7 @@ function AppUI () {
           />
           {openModal && (
             <Modal>
-              Add new Todo
+              <TodoForm/>
             </Modal>
           )}
        </>
