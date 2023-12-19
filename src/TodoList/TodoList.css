@@ -1,7 +1,7 @@
 .TodoList {
     margin-top: 16px;
     list-style: none;
-    border-radius: 20px;
+    border-radius: 10px;
     overflow-y: scroll;
     min-height: 150px;
   }
