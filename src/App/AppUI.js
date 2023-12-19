@@ -10,6 +10,7 @@ import { CreateTodoButton } from "../CreateTodoButton";
 import {Modal} from "../Modal";
 import {TodoForm} from "../TodoForm";
 import { TodoContext } from "../TodoContext";
+import {TodoCountwLoading} from "../TodoCountwLoading"
 
 // props:
 function AppUI () {
@@ -31,18 +32,26 @@ function AppUI () {
     return (
      
         <>
-          {/* First message */}
-          <TodoCount>
-            
-          </TodoCount>
+
+          {loading ? (
+          <TodoCountwLoading />
+        ) : (
+         <TodoCount>
+         </TodoCount>
+        )}
+
           {/* Search field */}
           <TodoSearch/>
 
+
+
+
           {/* TodoList will have now access to TodoContext props in order to execute its data */}
         
-            <TodoList>
+           <TodoList>
             {loading && 
             <>
+
             <TodosLoading/>
             <TodosLoading/>
             <TodosLoading/>
@@ -69,7 +78,7 @@ function AppUI () {
                 onDelete={()=>deleteTodo(todo.text)}
               />
             ))}
-          </TodoList>
+         </TodoList>
           
     
           {/* Button to create ToDo's */}

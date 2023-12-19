@@ -26,6 +26,8 @@ function useLocalStorage(itemName, initialValue) {
          setItem(parsedItem);
         // After localStorage is done loading, the setLoading will be false
         setLoading(false);
+        
+
       } catch (error) {
         setLoading(false);
         setError(true);
