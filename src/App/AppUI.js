@@ -9,8 +9,10 @@ import {EmptyTodos} from "../EmptyTodos"
 import { CreateTodoButton } from "../CreateTodoButton";
 import {Modal} from "../Modal";
 import {TodoForm} from "../TodoForm";
-import { TodoContext } from "../TodoContext";
 import {TodoCountwLoading} from "../TodoCountwLoading"
+import {TodoSearchwLoading} from "../TodoSearchwLoading"
+import { TodoContext } from "../TodoContext";
+
 
 // props:
 function AppUI () {
@@ -40,9 +42,11 @@ function AppUI () {
          </TodoCount>
         )}
 
-          {/* Search field */}
-          <TodoSearch/>
-
+          {loading ? (
+            <TodoSearchwLoading/>
+            ):(
+           <TodoSearch/>
+          )}
 
 
 
