@@ -1,4 +1,5 @@
-
+## To Do list with Create React App
+This repository features a Todo List built with a React app, developed through the Platzi Course of React. The implementation involves various concepts such as components, reactContext, reactEffects, and the utilization of states, as outlined in the official documentation. The user-friendly interface includes a straightforward design with an "Add" button for creating tasks and a search bar for enhanced usability.
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
